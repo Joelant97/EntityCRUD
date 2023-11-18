@@ -1,7 +1,15 @@
+using EntityCRUD.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Agregando el DBContext para ASP.NET Core 6 
+builder.Services.AddDbContext<ENTITYCRUDContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("ConexionDatabase")));
 
 var app = builder.Build();
 
